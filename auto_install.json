@@ -1,0 +1,10 @@
+{
+	"php_ext":"pathinfo",			
+	"chmod":[],	
+	"success_url":"/index.php",				
+	"php_versions":"53,54,55,56,70,71,72,73",
+	"db_config":"/zb_users/c_option.php",	
+	"run_path":"/",
+	"remove_file":["/index.html","/404.html"],
+	"enable_functions":[]
+}
