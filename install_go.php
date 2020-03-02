@@ -6,11 +6,24 @@
     if(is_pjax()){
         if(isset($_POST['site_addr'])){
             $site_addr = $_POST['site_addr'];
+            $site_name = $_POST['site_name'];
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, 'http://soxft.tk/reg.php');
+            curl_setopt($curl, CURLOPT_HEADER, 1);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            $post_data = array(
+                "addr" => "$site_addr",
+                "name" => "$site_name"
+                );
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+            $data = curl_exec($curl);
+            curl_close($curl);
             $sql_addr = $_POST['sql_addr'];
             $sql_user = $_POST['sql_user'];
             $sql_password = $_POST['sql_password'];
             $sql_name = $_POST['sql_name'];
-            $site_name = $_POST['site_name'];
+
             $admin_user = $_POST['admin_user'];
             $admin_password = $_POST['admin_password'];
             $config_php = "
@@ -31,8 +44,10 @@
                                 ) ENGINE=InnoDB";
             mysqli_query($db,$command);
             echo("成功安装");
+            echo("<meta http-equiv=\"Refresh\" content=\"1; url=$site_addr\"/>");
             unlink("./install.php");
             unlink("./install_go.php");
+            
         }
     }
 
