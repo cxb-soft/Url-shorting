@@ -17,7 +17,7 @@
                 return false;
             }
         }
-        function create_short( $length = 4 ) { 
+        function create_short( $length = 5 ) { 
             $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
             $shorturl = ""; 
             for ( $i = 0; $i < $length; $i++ ) 
@@ -66,7 +66,7 @@ emmm:
         }
         else{
             if(is_pjax()){
-                goto emmm;
+                //goto emmm;
             }
             else{
                 echo("
@@ -81,6 +81,8 @@ emmm:
         }
     }
     else{
+        $server = $_SERVER['HTTP_HOST'];
+        header("location:http://$server");
         echo("<h2>刷你个头数据库</h2>");
         exit();
     }
@@ -89,5 +91,7 @@ emmm:
 <br><br><br><br>
 <center>
     <h2>网址缩短成功</h2>
-    <div class="mdui-typo"><a href="<?php echo("http://$server/$shorturl") ?>"><?php echo("http://".$server."/$shorturl") ?></a></div>
+    <div class="mdui-typo"><a target="_blank" href="<?php echo("http://".$server."/$shorturl") ?>"><?php echo("http://".$server."/$shorturl") ?></a></div>
+    <br><br>
+    <img src="http://qr.liantu.com/api.php?text=<?php echo("http://".$server."/$shorturl") ?>"/>
 </center>

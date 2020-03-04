@@ -43,6 +43,21 @@
                                    url mediumtext NOT NULL
                                 ) ENGINE=InnoDB";
             mysqli_query($db,$command);
+            $command = "CREATE TABLE IF NOT EXISTS config (
+                                   config_name mediumtext NOT NULL, 
+                                   config_value mediumtext NOT NULL
+                                ) ENGINE=InnoDB";
+            mysqli_query($db,$command);
+            $command = "insert into config values('site_addr','$site_addr')";
+            mysqli_query($db,$command);
+            $command = "insert into config values('site_name','$site_name')";
+            mysqli_query($db,$command);
+            $command = "insert into config values('admin_user','$admin_user')";
+            mysqli_query($db,$command);
+            $command = "insert into config values('admin_password','$admin_password')";
+            mysqli_query($db,$command);
+            $command = "insert into config values('ver','v1.2')";
+            mysqli_query($db,$command);
             echo("成功安装");
             echo("<meta http-equiv=\"Refresh\" content=\"1; url=$site_addr\"/>");
             unlink("./install.php");
