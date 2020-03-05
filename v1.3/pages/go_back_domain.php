@@ -1,3 +1,18 @@
+<?php
+
+    function is_pjax(){ 
+      return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']; 
+    }
+    
+    if( is_pjax() ){
+        
+    }
+    else{
+        header("location:../");
+        exit();
+    }
+
+?>
 
 
 
@@ -26,7 +41,7 @@
             url : "/pages/short_to_long.php",
             container : "#pjax-change",
             type : "post",
-            data : { "short_url" : short_url }
+            data : { "shorturl" : short_url }
         })
     }
 </script>
